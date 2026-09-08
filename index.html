@@ -66,8 +66,9 @@ body{
 .wordmark em{font-style:normal;color:var(--ink-2)}
 .standfirst{
   margin:14px 0 0;
-  max-width:60ch;
-  font-size:15.5px;
+  max-width:none;
+  font-size:clamp(14.5px,1.15vw,17px);
+  line-height:1.5;
   color:var(--ink-2);
 }
 
@@ -149,37 +150,35 @@ main{padding:clamp(20px,3vw,34px) 0 80px}
 .card{
   aspect-ratio:63/88;
   container-type:inline-size;
-  display:block;text-align:center;
-  background:var(--sw);
-  border:0;border-radius:13px;
-  padding:4.4%;
+  display:flex;flex-direction:column;align-items:center;
+  text-align:center;
+  background:#FFFFFF;
+  border:7px solid var(--sw);
+  border-radius:14px;
+  padding:7% 7% 6%;
   cursor:pointer;overflow:hidden;
   -webkit-tap-highlight-color:transparent;
   transition:transform .16s ease, box-shadow .16s ease;
 }
+@media(min-width:700px){.card{border-width:9px;border-radius:17px;padding:8% 8% 6%}}
 .card:hover{transform:translateY(-3px);box-shadow:0 12px 30px rgba(15,23,32,.18)}
 .card:focus-visible{outline:2px solid var(--ink);outline-offset:3px}
-.card .inner{
-  height:100%;background:#FFFFFF;border-radius:7px;
-  display:flex;flex-direction:column;align-items:center;
-  padding:9% 8% 7%;overflow:hidden;
-}
 .card h3{
   font-family:var(--display);font-weight:800;
-  font-size:clamp(13px,8.4cqw,20px);line-height:1.08;letter-spacing:-.02em;
-  color:#1B1B1B;margin:0;text-wrap:balance;
+  font-size:clamp(13px,8.6cqw,20px);line-height:1.08;letter-spacing:-.02em;
+  color:#1B1B1B;margin:0;
   display:-webkit-box;-webkit-line-clamp:3;-webkit-box-orient:vertical;overflow:hidden;
 }
 .card .sub{
   font-family:var(--cond);font-weight:600;
-  font-size:clamp(10.5px,6.2cqw,15px);line-height:1.16;letter-spacing:.005em;
+  font-size:clamp(10.5px,6.4cqw,15px);line-height:1.16;letter-spacing:.005em;
   color:#3C3C3C;margin:6% 0 0;
   display:-webkit-box;-webkit-line-clamp:2;-webkit-box-orient:vertical;overflow:hidden;
 }
-.card img{margin:auto 0;width:58%;height:auto;display:block}
+.card img{margin:auto 0;width:58%;max-width:96px;height:auto;display:block;flex:0 0 auto}
 .card .lvl{
-  font-family:var(--cond);font-weight:700;
-  font-size:clamp(8px,4.1cqw,10.5px);letter-spacing:.14em;text-transform:uppercase;
+  font-family:var(--cond);font-weight:700;flex:0 0 auto;
+  font-size:clamp(8px,4.3cqw,10.5px);letter-spacing:.14em;text-transform:uppercase;
   color:var(--lv);display:flex;align-items:center;gap:5px;
 }
 .card .lvl s{width:5px;height:5px;border-radius:50%;background:var(--lv);text-decoration:none}
@@ -1631,12 +1630,10 @@ window.AS_ICONS = {"01": "data:image/svg+xml;base64,PD94bWwgdmVyc2lvbj0iMS4wIiBl
       el.setAttribute("aria-label", c.titre+", "+c.famille+", "+c.niveau);
       paint(el,c);
       el.innerHTML=
-        '<span class="inner">'+
-          '<h3>'+esc(c.titre)+'</h3>'+
-          '<span class="sub">'+esc(c.sous)+'</span>'+
-          '<img src="'+iconOf(c.n)+'" alt="" loading="lazy">'+
-          '<span class="lvl"><s></s>'+esc(c.niveau)+'</span>'+
-        '</span>';
+        '<h3>'+esc(c.titre)+'</h3>'+
+        '<span class="sub">'+esc(c.sous)+'</span>'+
+        '<img src="'+iconOf(c.n)+'" alt="" loading="lazy">'+
+        '<span class="lvl"><s></s>'+esc(c.niveau)+'</span>';
       hand.appendChild(el);
     });
     blank.hidden = state.list.length>0;
