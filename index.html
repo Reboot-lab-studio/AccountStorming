@@ -111,10 +111,12 @@ body{
 .facets{display:flex;flex-direction:column;gap:8px}
 .facet{display:flex;align-items:center;gap:9px;min-width:0}
 .facet > b{
-  flex:0 0 auto;width:62px;
+  flex:0 0 auto;width:88px;
+  white-space:nowrap;overflow:visible;
   font-family:var(--display);font-size:10px;font-weight:700;
   letter-spacing:.13em;text-transform:uppercase;color:var(--ink-3);
 }
+@media(max-width:420px){.facet > b{width:80px;letter-spacing:.09em}}
 .opts{display:flex;gap:5px;overflow-x:auto;scrollbar-width:none;padding:1px}
 .opts::-webkit-scrollbar{display:none}
 .opt{
